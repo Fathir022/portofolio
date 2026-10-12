@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | M.Fathir Ilhami</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Menghubungkan ke file CSS terpisah -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <aside class="profile-widget">
-        <h1>Fathir Love Acheron</h1>
-        <div class="indicator-pill"></div>
-        <p>Jobless Man |  Technology Explorer & Creative Developer. Focused on operating system modification, Game Analyst, and prankster</p>
+    <aside class="profile-widget hero-mode" id="heroBanner">
+        
+        <!-- Tombol Kembali (Muncul di Kiri Atas saat Mode Sidebar) -->
+        <button id="backBtn" class="back-btn" title="Kembali ke Banner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </button>
+        
+        <div class="hero-content">
+            <h1>Fathir Love Acheron</h1>
+            <div class="indicator-pill"></div>
+            <p>Jobless Man | Technology Explorer & Creative Developer. Focused on operating system modification, Game Analyst, and prankster</p>
+        </div>
+        
+        <button id="aboutBtn" class="about-btn">About Me</button>
     </aside>
 
-    <main class="main-content">
+    <main class="main-content hidden-cards" id="mainContent">
         <div class="grid-container" id="portfolioGrid">
             
             <div class="card purple" tabindex="0">
@@ -47,15 +58,6 @@
                 </div>
             </div>
             
-            <div class="card grey" tabindex="0">
-                <h3>Feet Post founder But GateKeep</h3>
-                <p>Feet Post GateKeep from friends </p>
-                <div class="chip-group">
-                    <span class="chip">TikTok</span>
-                    <span class="chip">Instagram</span>
-                </div>
-            </div>
-
             <div class="card purple" tabindex="0">
                 <h3>Gamer Or Gaymer</h3>
                 <p>Analyzing social multiplayer systems, Gamer sharing Gameplay to my imaginary friend and virtual economy in interactive environments.</p>
@@ -75,7 +77,6 @@
                 </div>
             </div>
 
-            <!-- Card Contact Me -->
             <div class="card grey" tabindex="0">
                 <h3>Contact Me</h3>
                 <p>Let's connect! You can reach me and see what I'm up to on my social media platforms below.</p>
@@ -88,7 +89,6 @@
         </div>
     </main>
 
-    <!-- Menghubungkan ke file JavaScript terpisah -->
     <script src="script.js"></script>
 </body>
 </html>
