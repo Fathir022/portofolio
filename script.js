@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentParallaxX = 0;
     let currentParallaxY = 0;
 
-    // Mengatur skala responsif
+    // Mengatur skala responsif saat mode 3D
     function handleResize() {
         const w = window.innerWidth;
         const h = window.innerHeight;
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePagination();
     
-    // Logika Fullscreen (Datar)
+    // Logika Fullscreen (Datar & Bisa di-scroll)
     function enterFullscreen(index) {
         isFullscreen = true;
         currentPage = index;
@@ -88,11 +88,17 @@ document.addEventListener('DOMContentLoaded', () => {
         uiControls.style.pointerEvents = 'none';
         pageIndicator.style.opacity = '0';
         
-        // Buat kamera menjadi datar (0 derajat)
+        // Atur rotasi menjadi datar dan paksa skala ke 1 agar tidak terlalu zoom
         camera.style.transform = `rotateX(0deg) rotateZ(0deg)`;
+        scaler.style.transform = `scale(1)`; 
         
         papers.forEach((paper, i) => {
             paper.classList.add('is-fullscreen');
+            
+            // Pertahankan lebar 800px, tapi batasi tinggi sesuai layar agar bisa di-scroll
+            paper.style.width = 'min(800px, 100vw)';
+            paper.style.height = '100vh';
+            paper.style.overflowY = 'auto'; // Aktifkan scroll
             
             if (i === index) {
                 const closeBtn = paper.querySelector('.close-btn');
@@ -101,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Geser dunia sesuai ukuran pixel kertas saat mode datar
+        // Geser dunia 3D sesuai posisi
         world.style.transform = `translate3d(-${index * paperWidthWithGap}px, 0, 0)`;
         updatePagination(); 
     }
@@ -119,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         papers.forEach((paper, i) => {
             paper.classList.remove('is-fullscreen');
+            
+            // Kembalikan ke ukuran 3D asli (800x1200) dan sembunyikan scroll
+            paper.style.width = '800px';
+            paper.style.height = '1200px';
+            paper.style.overflowY = 'hidden';
             paper.scrollTop = 0;
             
             const closeBtn = paper.querySelector('.close-btn');
@@ -126,9 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             closeBtn.style.pointerEvents = 'none';
         });
         
+        // Kembalikan skala responsif 3D
         handleResize(); 
         updatePagination(); 
         
+        // Reset pergerakan mouse
         targetParallaxX = 0;
         targetParallaxY = 0;
         currentParallaxX = 0;
@@ -154,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Efek Parallax Kursor
+    // Efek Parallax Kursor saat mode 3D
     window.addEventListener('mousemove', (e) => {
         if (isFullscreen) return; 
         const x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -183,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Jam digital untuk halaman kontak
     setInterval(() => {
         const now = new Date();
-        document.getElementById('time').textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const timeEl = document.getElementById('time');
+        if(timeEl) timeEl.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     }, 1000);
 });
