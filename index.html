@@ -12,16 +12,13 @@
     <meta property="og:image" content="og-preview.jpg">
     <meta property="og:url" content="https://fathir.dev/">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="M. Fathir Ilhammi - 3D Portfolio">
-    <meta name="twitter:description" content="Android Modification · UI/UX · Web Dev">
-    <meta name="twitter:image" content="og-preview.jpg">
-    <meta name="theme-color" content="#2b2b2b">
+    <meta name="theme-color" content="#e8e8e6">
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a1a1a'/><text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='60' fill='%23f4f4f0'>F</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23111'/><text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='60' fill='%23fff'>F</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="preload" as="image" href="miwif.webp">
     <link rel="stylesheet" href="style.css">
@@ -38,66 +35,76 @@
                     <!-- ========== PAPER 1: Home ========== -->
                     <div class="paper" id="paper-home" role="button" tabindex="0" aria-label="Open page 1: Home and Work">
                         <button class="close-btn" aria-label="Close focus mode">
-                            <svg aria-hidden="true" class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                         <div class="paper-inner">
                             <header class="page-header">
-                                <div class="text-sm tracking-widest font-medium uppercase">Fathir Joestar</div>
-                                <nav class="flex items-center gap-3 text-sm" aria-label="Main navigation">
-                                    <a href="#home" data-goto="0" class="nav-link">Work</a>
+                                <div class="brand-text">M. FATHIR ILHAMMI</div>
+                                <nav class="nav-menu" aria-label="Main navigation">
+                                    <a href="#home" data-goto="0" class="nav-link active">Work</a>
                                     <a href="#about" data-goto="1" class="nav-link">About</a>
                                     <a href="#contact" data-goto="2" class="nav-link">Contact</a>
-                                    <button class="share-btn" aria-label="Share this page" title="Share">
-                                        <svg aria-hidden="true" class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                                    </button>
-                                    <button id="themeToggle" type="button" class="theme-toggle" aria-label="Toggle dark mode">
-                                        <div class="theme-dot">
-                                            <svg aria-hidden="true" class="icon-xs text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                                        </div>
-                                    </button>
+                                    <div class="nav-actions">
+                                        <button class="share-btn" aria-label="Share this page" title="Share">
+                                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                        </button>
+                                        <button id="themeToggle" type="button" class="theme-toggle" aria-label="Toggle theme">
+                                            <div class="theme-dot"></div>
+                                        </button>
+                                    </div>
                                 </nav>
                             </header>
 
                             <div class="page-content">
-                                <div class="hero-text">
-                                    <h1 class="font-serif text-6xl leading-tight mb-6 tracking-tight text-gray-900">
-                                        HELLO I'M FATHIRITY - I KNOW EVERYTHING
+                                <div class="hero-section">
+                                    <h1 class="hero-title">
+                                        Hello, I am <br>
+                                        <span class="italic-accent">Fathir.</span>
                                     </h1>
-                                    <p class="text-2xl font-light text-gray-700">
-                                        Jobless man. Please hire me.
+                                    <p class="hero-subtitle">
+                                        A web developer and Android modder. I create digital experiences and customize systems to my liking.
                                     </p>
-                                    <div class="hero-actions">
-                                        <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="btn-outline group">
-                                            View Project
-                                            <svg aria-hidden="true" class="icon-sm transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                        </a>
-                                    </div>
+                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                        View Projects
+                                    </a>
                                 </div>
 
-                                <div class="project-grid mt-6">
+                                <div class="section-divider">
+                                    <span>Selected Works</span>
+                                </div>
+
+                                <div class="project-grid">
                                     <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card">
-                                        <div class="img-placeholder">
-                                            <img src="miwif.webp" alt="Acheron character portrait" width="400" height="200" decoding="async" onerror="this.parentElement.classList.add('bg-gradient-1'); this.remove();">
+                                        <div class="img-wrapper">
+                                            <img src="miwif.webp" alt="Acheron" width="400" height="300" decoding="async" onerror="this.parentElement.classList.add('bg-placeholder'); this.remove();">
                                         </div>
-                                        <div class="text-xs tracking-wide text-gray-600 mt-2">01 / My Wife - Acheron</div>
-                                    </a>
-                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card">
-                                        <div class="img-placeholder">
-                                            <img src="notes.png" alt="M3E Notes app screenshot" width="400" height="200" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('bg-gradient-2'); this.remove();">
+                                        <div class="project-info">
+                                            <h3>My Wife - Acheron</h3>
+                                            <span class="project-tag">Personal</span>
                                         </div>
-                                        <div class="text-xs tracking-wide text-gray-600 mt-2">02 / Web Notes - M3E Notes</div>
                                     </a>
                                     <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card">
-                                        <div class="img-placeholder bg-gradient-3" role="img" aria-label="Mobile games illustration"></div>
-                                        <div class="text-xs tracking-wide text-gray-600 mt-2">03 / Gamer - HOK &amp; SKY</div>
+                                        <div class="img-wrapper">
+                                            <img src="notes.png" alt="M3E Notes" width="400" height="300" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('bg-placeholder'); this.remove();">
+                                        </div>
+                                        <div class="project-info">
+                                            <h3>M3E Notes</h3>
+                                            <span class="project-tag">Web App</span>
+                                        </div>
                                     </a>
                                     <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card">
-                                        <div class="img-placeholder bg-gradient-4" role="img" aria-label="Custom ROM interface"></div>
-                                        <div class="text-xs tracking-wide text-gray-600 mt-2">04 / Android Modification - Custom ROM</div>
+                                        <div class="img-wrapper bg-placeholder" role="img" aria-label="Gaming"></div>
+                                        <div class="project-info">
+                                            <h3>Gamer - HOK &amp; SKY</h3>
+                                            <span class="project-tag">Hobby</span>
+                                        </div>
                                     </a>
                                     <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card">
-                                        <div class="img-placeholder bg-gradient-5" role="img" aria-label="MALASH website preview"></div>
-                                        <div class="text-xs tracking-wide text-gray-600 mt-2">05 / Web Dev - MALASH</div>
+                                        <div class="img-wrapper bg-placeholder" role="img" aria-label="Android Modding"></div>
+                                        <div class="project-info">
+                                            <h3>Android Mod - ROM</h3>
+                                            <span class="project-tag">System</span>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -107,34 +114,34 @@
                     <!-- ========== PAPER 2: About ========== -->
                     <div class="paper" id="paper-about" role="button" tabindex="0" aria-label="Open page 2: About">
                         <button class="close-btn" aria-label="Close focus mode">
-                            <svg aria-hidden="true" class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                         <div class="paper-inner">
                             <header class="page-header">
-                                <div class="text-sm tracking-widest font-medium uppercase">Fathir Joestar</div>
-                                <div class="text-sm text-gray-500">About Me</div>
+                                <div class="brand-text">M. FATHIR ILHAMMI</div>
+                                <div class="header-label">About Me</div>
                             </header>
                             <div class="page-content">
-                                <div class="hero-image">
-                                    <img src="kk.jpeg" alt="Acheron illustration" width="700" height="400" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('bg-gradient-2'); this.remove();">
+                                <div class="about-image">
+                                    <img src="kk.jpeg" alt="Acheron" width="700" height="400" loading="lazy" decoding="async" onerror="this.parentElement.classList.add('bg-placeholder'); this.remove();">
                                 </div>
-                                <h1 class="font-serif text-5xl mb-4">ACHERON MY WIFE</h1>
-                                <div class="grid grid-cols-2 gap-12 text-gray-700 leading-relaxed font-light text-sm">
-                                    <div>
-                                        <p class="mb-4">I met her for the first time in March 2024, she is very beautiful.</p>
+                                <h2 class="section-title">Acheron My Wife</h2>
+                                <div class="about-grid">
+                                    <div class="about-text">
+                                        <p>I met her for the first time in March 2024, she is very beautiful.</p>
                                         <p>She makes my heart flutter when I see her, I really like her. And exactly April 2024, we officially got married and live together until now.</p>
                                     </div>
-                                    <div>
-                                        <h3 class="font-medium text-gray-900 mb-2">Capabilities</h3>
-                                        <ul class="space-y-2 mb-6">
+                                    <div class="about-skills">
+                                        <h4>Capabilities</h4>
+                                        <ul>
                                             <li>Android Modification</li>
                                             <li>UI/UX Engineering</li>
                                             <li>Prankster</li>
                                             <li>Crazy People</li>
                                         </ul>
-                                        <h3 class="font-medium text-gray-900 mb-2">Awards &amp; Recognition</h3>
-                                        <ul class="space-y-2 text-gray-500">
-                                            <li>Awards Ragebaiter Pro</li>
+                                        <h4 class="mt-6">Awards</h4>
+                                        <ul class="text-muted">
+                                            <li>Ragebaiter Pro</li>
                                             <li>Goon Tournament</li>
                                         </ul>
                                     </div>
@@ -146,47 +153,49 @@
                     <!-- ========== PAPER 3: Contact ========== -->
                     <div class="paper" id="paper-contact" role="button" tabindex="0" aria-label="Open page 3: Contact">
                         <button class="close-btn" aria-label="Close focus mode">
-                            <svg aria-hidden="true" class="icon-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
                         <div class="paper-inner">
                             <header class="page-header">
-                                <div class="text-sm tracking-widest font-medium uppercase">M. Fathir Ilhammi</div>
-                                <div class="text-sm text-gray-500">Contact</div>
+                                <div class="brand-text">M. FATHIR ILHAMMI</div>
+                                <div class="header-label">Contact</div>
                             </header>
                             <div class="page-content flex flex-col">
                                 <div class="flex-grow">
-                                    <h1 class="font-serif text-6xl mb-6">LET'S WORK <br>TOGETHER</h1>
-                                    <p class="text-xl text-gray-600 font-light mb-12">
-                                        Currently available for freelance opportunities.<br> Let's build something remarkable.
-                                    </p>
+                                    <h2 class="section-title large">Let's work together.</h2>
+                                    <p class="contact-desc">Currently available for freelance opportunities. Send me a message.</p>
 
-                                    <form id="contactForm" class="space-y-8 w-3/4" novalidate>
+                                    <form id="contactForm" class="contact-form" novalidate>
                                         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
-                                        <div class="border-b border-gray-300 pb-2">
-                                            <label for="contact-name" class="sr-only">Your name</label>
-                                            <input id="contact-name" name="name" type="text" required placeholder="What's your name?" class="form-input">
+                                        
+                                        <div class="input-group">
+                                            <label for="contact-name">Name</label>
+                                            <input id="contact-name" name="name" type="text" required placeholder="John Doe" class="form-input">
                                         </div>
-                                        <div class="border-b border-gray-300 pb-2">
-                                            <label for="contact-email" class="sr-only">Your email address</label>
-                                            <input id="contact-email" name="email" type="email" required placeholder="Your email address" class="form-input">
+                                        <div class="input-group">
+                                            <label for="contact-email">Email</label>
+                                            <input id="contact-email" name="email" type="email" required placeholder="john@example.com" class="form-input">
                                         </div>
-                                        <div class="border-b border-gray-300 pb-2 pt-4">
-                                            <label for="contact-message" class="sr-only">Project details</label>
-                                            <textarea id="contact-message" name="message" required placeholder="Tell me about your project..." rows="4" class="form-input resize-none"></textarea>
+                                        <div class="input-group">
+                                            <label for="contact-message">Message</label>
+                                            <textarea id="contact-message" name="message" required placeholder="Tell me about your project..." rows="4" class="form-input"></textarea>
                                         </div>
-                                        <button type="submit" class="btn-solid mt-4">SEND MESSAGE</button>
+                                        
+                                        <button type="submit" class="btn-primary w-full mt-4">
+                                            Send Message
+                                        </button>
                                     </form>
                                 </div>
 
                                 <div class="contact-footer">
                                     <div>
-                                        <div class="text-xs text-gray-500 mb-1">Local Time</div>
-                                        <div class="text-sm font-medium">Jakarta, ID - <span id="time">00:00</span></div>
+                                        <div class="footer-label">Local Time</div>
+                                        <div class="footer-value">Jakarta, ID - <span id="time">00:00</span></div>
                                     </div>
-                                    <div class="flex gap-6 text-sm font-medium">
-                                        <a href="#" class="opacity-60 cursor-not-allowed" aria-disabled="true" title="Coming soon">Twitter</a>
-                                        <a href="https://instagram.com/@sikimah_sikibidh" target="_blank" rel="noopener noreferrer" class="nav-link">Instagram</a>
-                                        <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub</a>
+                                    <div class="social-links">
+                                        <a href="#" class="text-muted cursor-not-allowed">Twitter</a>
+                                        <a href="https://instagram.com/@sikimah_sikibidh" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer">GitHub</a>
                                     </div>
                                 </div>
                             </div>
@@ -198,10 +207,10 @@
         </div>
     </div>
 
-    <div class="page-indicator" aria-live="polite">PAGE <span id="pageNum">1</span> / 3</div>
+    <div class="page-indicator" aria-live="polite"><span id="pageNum">01</span> / 03</div>
     <div class="ui-controls">
-        <button id="btnPrev" class="btn-nav" disabled aria-label="Previous page">← Previous</button>
-        <button id="btnNext" class="btn-nav" aria-label="Next page">Next →</button>
+        <button id="btnPrev" class="btn-nav" disabled aria-label="Previous page">←</button>
+        <button id="btnNext" class="btn-nav" aria-label="Next page">→</button>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>

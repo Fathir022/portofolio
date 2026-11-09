@@ -33,9 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentParallaxX = 0;
     let currentParallaxY = 0;
 
-    // =========================================================
-    // TOAST
-    // =========================================================
     const toastEl = document.getElementById('toast');
     let toastTimer;
     function showToast(message, type = 'success') {
@@ -45,9 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3000);
     }
 
-    // =========================================================
-    // DARK MODE
-    // =========================================================
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.body.classList.add('dark-mode');
@@ -60,9 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // =========================================================
-    // HASH ROUTING
-    // =========================================================
     function readHashPage() {
         const idx = ROUTES.indexOf(location.hash.slice(1));
         return idx >= 0 ? idx : null;
@@ -86,9 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (location.hash !== target) history.pushState({ page: index }, '', target);
     }
 
-    // =========================================================
-    // Animation Loop (Parallax)
-    // =========================================================
     let rafId = null;
     let idleFrames = 0;
     const IDLE_THRESHOLD = 30;
@@ -125,9 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!document.hidden && !prefersReducedMotion && !isFocused) startAnimation();
     });
 
-    // =========================================================
-    // Setup
-    // =========================================================
     papers.forEach((paper, i) => {
         paper.style.left = `${i * CONFIG.PAPER_WITH_GAP}px`;
         paper.style.width = `${CONFIG.PAPER_W}px`;
@@ -135,7 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function handleResize() {
-        if (isFocused) return;
+        if (isFocused) {
+            scaler.style.transform = `scale(1)`;
+            return;
+        }
+
         const w = window.innerWidth;
         const h = window.innerHeight;
         let scale = 0.85;
@@ -148,19 +137,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    // =========================================================
-    // Pagination
-    // =========================================================
     function updateButtons() {
         btnPrev.disabled = currentPage === 0;
         btnNext.disabled = currentPage === totalPages - 1;
-        pageNum.textContent = currentPage + 1;
+        pageNum.textContent = String(currentPage + 1).padStart(2, '0');
     }
 
     function updatePagination() {
         updateButtons();
         const translateX = -(currentPage * CONFIG.PAPER_WITH_GAP);
         world.style.transform = `translate3d(${translateX}px, 0, 0)`;
+
+        document.querySelectorAll('.nav-link').forEach((link, i) => {
+            link.classList.toggle('active', i === currentPage);
+        });
 
         if (isFocused) {
             papers.forEach((p, i) => {
@@ -178,9 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePagination();
 
-    // =========================================================
-    // Focus Mode (Tegak Lurus / Flat)
-    // =========================================================
     function enterFocus(index) {
         if (isFocused) return;
         isFocused = true;
@@ -189,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('is-focused');
         
         camera.style.transform = `rotateX(0deg) rotateZ(0deg)`;
-        scaler.style.transform = `scale(1)`;
+        scaler.style.transform = `scale(1)`; 
 
         updatePagination();
         pushRoute(index);
@@ -213,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         handleResize();
+        
         targetParallaxX = targetParallaxY = 0;
         currentParallaxX = currentParallaxY = 0;
         camera.style.transform = `rotateX(${CONFIG.ROT_X}deg) rotateZ(${CONFIG.ROT_Z}deg)`;
@@ -220,9 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         startAnimation();
     }
 
-    // =========================================================
-    // Interactions
-    // =========================================================
     papers.forEach((paper, i) => {
         paper.addEventListener('click', (e) => {
             if (e.target.closest('a, button, input, textarea, label, select, .close-btn, .share-btn, .theme-toggle, .project-card')) return;
@@ -266,9 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnPrev.addEventListener('click', () => navigateTo(currentPage - 1));
     btnNext.addEventListener('click', () => navigateTo(currentPage + 1));
 
-    // =========================================================
-    // Touch Swipe
-    // =========================================================
     let touchStartX = 0;
     let touchStartY = 0;
     let touchStartTime = 0;
@@ -288,9 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else navigateTo(currentPage - 1);
     }, { passive: true });
 
-    // =========================================================
-    // Share Button
-    // =========================================================
     shareBtns.forEach((btn) => {
         btn.addEventListener('click', async (e) => {
             e.stopPropagation();
@@ -306,9 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // =========================================================
-    // Parallax
-    // =========================================================
     function handleParallax(clientX, clientY) {
         if (prefersReducedMotion || isFocused) return;
         const x = (clientX / window.innerWidth) * 2 - 1;
@@ -336,9 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startAnimation();
 
-    // =========================================================
-    // Clock
-    // =========================================================
     function updateClock() {
         const timeEl = document.getElementById('time');
         if (!timeEl) return;
@@ -353,9 +326,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 30000);
 
-    // =========================================================
-    // Contact Form
-    // =========================================================
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -383,9 +353,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.warn('[Portfolio] DEMO MODE. Set FORMSPREE_ID in script.js');
                 }
 
-                btn.textContent = '✓ MESSAGE SENT';
+                btn.textContent = '✓ SENT';
                 contactForm.reset();
-                showToast('Message sent!');
+                showToast('Message sent successfully.');
                 setTimeout(() => {
                     btn.textContent = original;
                     btn.disabled = false;
@@ -393,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 btn.textContent = original;
                 btn.disabled = false;
-                showToast('Failed to send.', 'error');
+                showToast('Failed to send message.', 'error');
             }
         });
     }
