@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M. Fathir Ilhammi — 3D Portfolio</title>
+
+    <meta name="description" content="Portfolio of M. Fathir Ilhammi — Android modification, UI/UX engineering, and web development.">
+    <meta property="og:title" content="M. Fathir Ilhammi — Portfolio">
+    <meta property="og:description" content="Android Modification · UI/UX · Web Dev">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fathir.dev/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#F4F1EB">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23121212'/><text x='50' y='54' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='64' fill='%23F4F1EB'>F</text><circle cx='78' cy='22' r='7' fill='%23E24A26'/></svg>">
+
+    <script>
+        document.documentElement.classList.add('js');
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.dataset.theme = theme;
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', theme === 'dark' ? '#0B0B0C' : '#F4F1EB');
+            } catch (error) {}
+        })();
+        setTimeout(function () {
+            if (document.body && document.body.classList.contains('is-loading')) {
+                document.body.classList.remove('is-loading');
+                document.body.classList.add('is-loaded');
+                document.querySelectorAll('[data-reveal]').forEach(function (el) {
+                    el.classList.add('is-visible');
+                });
+            }
+        }, 2500);
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="image" href="miwif.webp">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+    <a href="#world" class="skip-link">Skip to content</a>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="cursor" id="cursor" aria-hidden="true">
+        <span class="cursor__dot"></span>
+        <span class="cursor__ring"><span class="cursor__label"></span></span>
+    </div>
+
+    <div class="scene" id="scene">
+        <div class="scaler" id="scaler">
+            <div class="camera" id="camera">
+                <div class="world" id="world" role="region" aria-label="Portfolio pages" tabindex="-1">
+
+                    <!-- ========== PAPER 1: Home ========== -->
+                    <article class="paper" id="paper-home" data-index="0" style="--i: 0" data-cursor="Open" aria-labelledby="home-title" tabindex="0">
+                        <div class="paper-inner">
+                            <header class="page-header">
+                                <a href="#home" data-goto="0" class="brand-text">M. FATHIR ILHAMMI</a>
+                                <nav class="nav-menu" aria-label="Main navigation">
+                                    <span class="nav-pill" aria-hidden="true"></span>
+                                    <a href="#home" data-goto="0" class="nav-link active">Work</a>
+                                    <a href="#about" data-goto="1" class="nav-link">About</a>
+                                    <a href="#contact" data-goto="2" class="nav-link">Contact</a>
+                                    <div class="nav-actions">
+                                        <button class="icon-btn share-btn" aria-label="Share this page" title="Share" data-cursor="Share">
+                                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                        </button>
+                                        <button type="button" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" data-cursor="Theme">
+                                            <span class="theme-dot"></span>
+                                        </button>
+                                    </div>
+                                </nav>
+                            </header>
+
+                            <div class="page-content">
+                                <div class="hero-section">
+                                    <h1 class="hero-title" id="home-title">
+                                        <span class="line"><span>Hello, I am</span></span>
+                                        <span class="line"><span class="italic-accent">Fathir.</span></span>
+                                    </h1>
+                                    <p class="hero-subtitle" data-reveal>
+                                        A web developer and Android modder. I create digital experiences and customize systems to my liking.
+                                    </p>
+                                    <div class="btn-wrap" data-reveal>
+                                        <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic" data-cursor="GitHub">
+                                            <span>View Projects</span>
+                                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="section-divider" data-reveal>
+                                    <span>Selected Works</span>
+                                    <span class="section-count">04</span>
+                                </div>
+
+                                <div class="project-grid">
+                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card" data-tilt data-cursor="View" data-reveal>
+                                        <div class="img-wrapper">
+                                            <img src="miwif.webp" alt="Acheron" width="400" height="300" decoding="async">
+                                            <span class="project-index">01</span>
+                                            <span class="project-arrow" aria-hidden="true">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="project-info">
+                                            <h3>My Wife - Acheron</h3>
+                                            <span class="project-tag">Personal</span>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card" data-tilt data-cursor="View" data-reveal>
+                                        <div class="img-wrapper">
+                                            <img src="notes.png" alt="M3E Notes" width="400" height="300" loading="lazy" decoding="async">
+                                            <span class="project-index">02</span>
+                                            <span class="project-arrow" aria-hidden="true">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="project-info">
+                                            <h3>M3E Notes</h3>
+                                            <span class="project-tag">Web App</span>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card" data-tilt data-cursor="View" data-reveal>
+                                        <div class="img-wrapper bg-placeholder" role="img" aria-label="Gaming" data-mark="HOK">
+                                            <span class="project-index">03</span>
+                                            <span class="project-arrow" aria-hidden="true">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="project-info">
+                                            <h3>Gamer - HOK &amp; SKY</h3>
+                                            <span class="project-tag">Hobby</span>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer" class="project-card" data-tilt data-cursor="View" data-reveal>
+                                        <div class="img-wrapper bg-placeholder" role="img" aria-label="Android Modding" data-mark="ROM">
+                                            <span class="project-index">04</span>
+                                            <span class="project-arrow" aria-hidden="true">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="project-info">
+                                            <h3>Android Mod - ROM</h3>
+                                            <span class="project-tag">System</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="paper-open" data-open data-cursor="Open" aria-label="Open Work page">
+                            <span>Open</span>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                        </button>
+                        <button class="close-btn" aria-label="Close page" data-close data-cursor="Close">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </article>
+
+                    <!-- ========== PAPER 2: About ========== -->
+                    <article class="paper" id="paper-about" data-index="1" style="--i: 1" data-cursor="Open" aria-labelledby="about-title" tabindex="0">
+                        <div class="paper-inner">
+                            <header class="page-header">
+                                <a href="#home" data-goto="0" class="brand-text">M. FATHIR ILHAMMI</a>
+                                <div class="header-tools">
+                                    <div class="header-label">About Me</div>
+                                    <button type="button" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" data-cursor="Theme">
+                                        <span class="theme-dot"></span>
+                                    </button>
+                                </div>
+                            </header>
+                            <div class="page-content">
+                                <div class="about-image" data-reveal>
+                                    <img src="kk.jpeg" alt="Acheron" width="700" height="400" loading="lazy" decoding="async">
+                                </div>
+                                <h2 class="section-title" id="about-title" data-reveal>Acheron My Wife</h2>
+                                <div class="about-grid">
+                                    <div class="about-text" data-reveal>
+                                        <p>I met her for the first time in March 2024, she is very beautiful.</p>
+                                        <p>She makes my heart flutter when I see her, I really like her. And exactly April 2024, we officially got married and live together until now.</p>
+                                    </div>
+                                    <div class="about-skills" data-reveal>
+                                        <h4>Capabilities</h4>
+                                        <ul>
+                                            <li>Android Modification</li>
+                                            <li>UI/UX Engineering</li>
+                                            <li>Prankster</li>
+                                            <li>Crazy People</li>
+                                        </ul>
+                                        <h4 class="mt-6">Awards</h4>
+                                        <ul class="text-muted">
+                                            <li>Ragebaiter Pro</li>
+                                            <li>Goon Tournament</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="paper-open" data-open data-cursor="Open" aria-label="Open About page">
+                            <span>Open</span>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                        </button>
+                        <button class="close-btn" aria-label="Close page" data-close data-cursor="Close">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </article>
+
+                    <!-- ========== PAPER 3: Contact ========== -->
+                    <article class="paper" id="paper-contact" data-index="2" style="--i: 2" data-cursor="Open" aria-labelledby="contact-title" tabindex="0">
+                        <div class="paper-inner">
+                            <header class="page-header">
+                                <a href="#home" data-goto="0" class="brand-text">M. FATHIR ILHAMMI</a>
+                                <div class="header-tools">
+                                    <div class="header-label">Contact</div>
+                                    <button type="button" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" data-cursor="Theme">
+                                        <span class="theme-dot"></span>
+                                    </button>
+                                </div>
+                            </header>
+                            <div class="page-content flex flex-col">
+                                <div class="flex-grow">
+                                    <h2 class="section-title large" id="contact-title" data-reveal>Let's work together.</h2>
+                                    <p class="contact-desc" data-reveal>Currently available for freelance opportunities. Send me a message.</p>
+
+                                    <form id="contactForm" class="contact-form" novalidate>
+                                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+
+                                        <div class="input-group" data-reveal>
+                                            <label for="contact-name">Name</label>
+                                            <input id="contact-name" name="name" type="text" required placeholder="John Doe" class="form-input" autocomplete="name">
+                                        </div>
+                                        <div class="input-group" data-reveal>
+                                            <label for="contact-email">Email</label>
+                                            <input id="contact-email" name="email" type="email" required placeholder="john@example.com" class="form-input" autocomplete="email">
+                                        </div>
+                                        <div class="input-group" data-reveal>
+                                            <label for="contact-message">Message</label>
+                                            <textarea id="contact-message" name="message" required placeholder="Tell me about your project..." rows="4" class="form-input"></textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn-primary w-full mt-4" data-reveal>
+                                            <span class="btn-label">Send Message</span>
+                                            <span class="btn-spinner" aria-hidden="true"></span>
+                                            <svg class="btn-check" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 13l4 4L19 7"/></svg>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="contact-footer" data-reveal>
+                                    <div>
+                                        <div class="footer-label">Local Time</div>
+                                        <div class="footer-value">Jakarta, ID - <span id="time">00:00</span></div>
+                                    </div>
+                                    <div class="social-links">
+                                        <a href="#" class="text-muted cursor-not-allowed" aria-disabled="true" tabindex="-1">Twitter</a>
+                                        <a href="https://instagram.com/@sikimah_sikibidh" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="paper-open" data-open data-cursor="Open" aria-label="Open Contact page">
+                            <span>Open</span>
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+                        </button>
+                        <button class="close-btn" aria-label="Close page" data-close data-cursor="Close">
+                            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="focus-layer" id="focusLayer" role="dialog" aria-modal="true" aria-label="Page detail" aria-hidden="true">
+        <div class="focus-backdrop" data-close></div>
+        <div class="focus-stage" id="focusStage"></div>
+        <div class="focus-progress" aria-hidden="true"><span id="focusProgress"></span></div>
+    </div>
+
+    <div class="page-indicator" aria-live="polite" aria-atomic="true">
+        <span class="page-indicator__current" id="pageNum">01</span>
+        <span class="page-indicator__sep">/</span>
+        <span class="page-indicator__total">03</span>
+    </div>
+
+    <div class="ui-controls">
+        <button id="btnPrev" class="btn-nav" disabled aria-label="Previous page">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 12H5M5 12l6-6M5 12l6 6"/></svg>
+        </button>
+        <button id="btnNext" class="btn-nav" aria-label="Next page">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M19 12l-6-6M19 12l-6 6"/></svg>
+        </button>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <span class="toast__message"></span>
+        <span class="toast__progress" aria-hidden="true"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
