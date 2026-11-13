@@ -45,7 +45,6 @@
     --paper-h: 1320px;
     --paper-gap: 980px;
     --paper-pad: 56px;
-    --focus-h: min(920px, calc(100vh - 96px));
     --focus-h: min(920px, calc(100dvh - 96px));
 
     --gutter: clamp(20px, 4vw, 48px);
@@ -62,7 +61,7 @@
     --ink: #F2F0EA;
     --ink-soft: #D9D6CE;
     --muted: #8A8880;
-    --muted-2: #5E5D58;
+    --muted-2: #83817B;
     --line: rgba(255, 255, 255, 0.12);
     --line-strong: rgba(255, 255, 255, 0.22);
     --accent: #FF5A33;
@@ -101,6 +100,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     overflow: hidden;
+    touch-action: manipulation;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -238,8 +238,8 @@ body.has-cursor .cursor {
 }
 
 .cursor__ring {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     border: 1px solid var(--line-strong);
     border-radius: 50%;
     display: grid;
@@ -261,8 +261,8 @@ body.has-cursor .cursor {
 }
 
 .cursor.is-hover .cursor__ring {
-    width: 62px;
-    height: 62px;
+    width: 48px;
+    height: 48px;
     background: var(--accent);
     border-color: var(--accent);
 }
@@ -277,13 +277,13 @@ body.has-cursor .cursor {
 }
 
 .cursor.is-down .cursor__ring {
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
 }
 
 .cursor.is-down.is-hover .cursor__ring {
-    width: 56px;
-    height: 56px;
+    width: 42px;
+    height: 42px;
 }
 
 body.has-cursor .cursor.is-text {
@@ -333,12 +333,6 @@ body.is-focused .scene {
     pointer-events: none;
 }
 
-@media (max-width: 640px) {
-    .camera {
-        transform: rotateX(16deg) rotateZ(-6deg);
-    }
-}
-
 .world {
     position: relative;
     width: 0;
@@ -364,7 +358,6 @@ body.is-focused .scene {
     height: var(--paper-h);
     margin: 0;
     background-color: var(--surface);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 18%);
     color: var(--ink);
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
@@ -376,10 +369,6 @@ body.is-focused .scene {
     container-type: inline-size;
     transition: transform 500ms var(--ease-out), box-shadow var(--dur-3) var(--ease-out), border-color var(--dur-3) var(--ease-out), opacity var(--dur-3) var(--ease-out);
     will-change: transform;
-}
-
-:root[data-theme="dark"] .paper {
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18%);
 }
 
 .js body.is-loading .paper {
@@ -416,14 +405,15 @@ body.is-focused .scene {
     flex-direction: column;
     overflow: hidden;
     border-radius: inherit;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
 }
 
 .paper.is-focused .paper-inner {
+    overflow-x: hidden;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 52px 56px 96px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--line-strong) transparent;
+    padding: 48px 56px 96px;
 }
 
 .paper.is-focused .page-header {
@@ -452,13 +442,15 @@ body.is-focused .scene {
     align-items: center;
     gap: 24px;
     flex-shrink: 0;
-    padding-bottom: 20px;
-    margin-bottom: 44px;
+    padding-bottom: 16px;
+    margin-bottom: 48px;
     border-bottom: 1px solid var(--line);
 }
 
 .brand-text {
     position: relative;
+    padding: 6px 0;
+    margin: -6px 0;
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 500;
@@ -615,8 +607,12 @@ body.is-focused .scene {
     min-height: 0;
 }
 
+.page-content > * {
+    flex-shrink: 0;
+}
+
 .hero-section {
-    margin-bottom: clamp(48px, 7vh, 72px);
+    margin-bottom: clamp(48px, 7dvh, 72px);
 }
 
 .hero-title {
@@ -676,51 +672,54 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    min-height: 48px;
-    padding: 13px 22px;
-    border-radius: var(--radius-full);
-    background: var(--ink);
-    color: var(--bg);
-    font-size: 13px;
+    gap: 10px;
+    min-height: 44px;
+    padding: 11px 2px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: var(--ink);
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     text-decoration: none;
     overflow: hidden;
     isolation: isolate;
-    transition: color var(--dur-3) var(--ease-out), box-shadow var(--dur-3), transform var(--dur-3) var(--ease-spring);
+    transition: color var(--dur-2) var(--ease-out);
 }
 
+/* Underline grows from the left so the affordance stays typographic, not a fill. */
 .btn-primary::before {
     content: '';
     position: absolute;
-    inset: 0;
-    z-index: -1;
+    left: 0;
+    bottom: 8px;
+    width: 100%;
+    height: 1px;
     background: var(--accent);
-    transform: translateY(101%);
+    transform: scaleX(0);
+    transform-origin: left;
     transition: transform var(--dur-3) var(--ease-out);
 }
 
-.btn-primary:hover::before {
-    transform: translateY(0);
-}
-
-.btn-primary:hover {
-    color: var(--accent-contrast);
-    box-shadow: var(--shadow-accent);
+.btn-primary:hover::before,
+.btn-primary:focus-visible::before {
+    transform: scaleX(1);
 }
 
 .btn-primary:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
 }
 
 .btn-primary svg {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     transition: transform var(--dur-3) var(--ease-out);
 }
 
-.btn-primary:hover svg {
+.btn-primary:hover svg,
+.btn-primary:focus-visible svg {
     transform: translate(3px, -3px);
 }
 
@@ -739,8 +738,11 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 
 .btn-spinner {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 16px;
     height: 16px;
+    margin: -8px 0 0 -8px;
     border: 1.5px solid currentColor;
     border-right-color: transparent;
     border-radius: 50%;
@@ -750,8 +752,11 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 
 .btn-check {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 18px;
     height: 18px;
+    transform: translate(-50%, -50%);
     opacity: 0;
     stroke-dasharray: 28;
     stroke-dashoffset: 28;
@@ -777,9 +782,8 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
     stroke-dashoffset: 0;
 }
 
-.btn-primary.is-success {
-    background: var(--accent);
-    color: var(--accent-contrast);
+.btn-primary.is-success::before {
+    transform: scaleX(1);
 }
 
 @keyframes spin {
@@ -832,14 +836,14 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 .project-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px 24px;
+    gap: 24px;
 }
 
 .project-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 16px;
     color: inherit;
     text-decoration: none;
     perspective: 900px;
@@ -859,37 +863,12 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 
 .project-card:hover .img-wrapper {
     border-color: var(--line-strong);
-    box-shadow: 0 14px 34px rgba(18, 18, 18, 0.10);
-}
-
-:root[data-theme="dark"] .project-card:hover .img-wrapper {
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
 }
 
 .img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 800ms var(--ease-out), filter var(--dur-4);
-}
-
-.project-card:hover .img-wrapper img {
-    transform: scale(1.055);
-}
-
-.img-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: linear-gradient(180deg, transparent 42%, rgba(18, 18, 18, 0.26));
-    opacity: 0;
-    transition: opacity 500ms var(--ease-out);
-    pointer-events: none;
-}
-
-.project-card:hover .img-wrapper::after {
-    opacity: 1;
 }
 
 .project-index {
@@ -899,19 +878,16 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
     z-index: 3;
     padding: 3px 6px;
     border-radius: var(--radius-full);
-    background: rgba(18, 18, 18, 0.52);
-    color: #fff;
+    background: var(--ink);
+    color: var(--accent-contrast);
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.1em;
-    opacity: 0.78;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: transform var(--dur-3) var(--ease-out), opacity var(--dur-3);
+    opacity: 0.82;
+    transition: opacity var(--dur-3) var(--ease-out);
 }
 
 .project-card:hover .project-index {
-    transform: translateY(-2px);
     opacity: 1;
 }
 
@@ -922,24 +898,29 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
     z-index: 3;
     width: 32px;
     height: 32px;
+    border: 1px solid var(--line);
     border-radius: 50%;
     display: grid;
     place-items: center;
     background: var(--surface);
     color: var(--ink);
     opacity: 0;
-    transform: translateY(-6px) scale(0.9);
-    transition: opacity var(--dur-3), transform 450ms var(--ease-spring);
+    transition: opacity var(--dur-3) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
 
 .project-arrow svg {
     width: 14px;
     height: 14px;
+    transition: transform var(--dur-3) var(--ease-out);
 }
 
 .project-card:hover .project-arrow {
     opacity: 1;
-    transform: none;
+    border-color: var(--line-strong);
+}
+
+.project-card:hover .project-arrow svg {
+    transform: translate(3px, -3px);
 }
 
 .project-info {
@@ -997,8 +978,8 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
    ========================================================= */
 .about-image {
     width: 100%;
-    height: clamp(240px, 34vh, 340px);
-    margin-bottom: 34px;
+    height: clamp(240px, 34dvh, 340px);
+    margin-bottom: 32px;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius-sm);
@@ -1017,7 +998,7 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 }
 
 .section-title {
-    margin: 0 0 26px;
+    margin: 0 0 24px;
     padding-bottom: 16px;
     border-bottom: 1px solid var(--line);
     font-family: var(--font-display);
@@ -1065,11 +1046,11 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 
 .about-skills li {
     position: relative;
-    padding: 9px 0 9px 18px;
+    padding: 8px 0 8px 18px;
     border-bottom: 1px solid var(--line);
     color: var(--ink-soft);
     font-size: 0.94rem;
-    transition: color var(--dur-2), padding-left var(--dur-3) var(--ease-out);
+    transition: color var(--dur-2);
 }
 
 .about-skills li::before {
@@ -1082,16 +1063,10 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
     border-radius: 50%;
     background: var(--accent);
     transform: translateY(-50%);
-    transition: transform var(--dur-3) var(--ease-spring);
 }
 
 .about-skills li:hover {
     color: var(--accent);
-    padding-left: 24px;
-}
-
-.about-skills li:hover::before {
-    transform: translateY(-50%) scale(1.8);
 }
 
 .about-skills .text-muted li {
@@ -1104,7 +1079,7 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 .contact-desc {
     position: relative;
     max-width: 52ch;
-    margin: 0 0 36px;
+    margin: 0 0 32px;
     padding-left: 18px;
     color: var(--muted);
     font-size: 1rem;
@@ -1132,20 +1107,20 @@ body.is-loaded .hero-title .line:nth-child(2) > span {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 24px;
 }
 
 .input-group {
     position: relative;
     display: flex;
     flex-direction: column;
-    padding-top: 18px;
+    padding-top: 16px;
 }
 
 .input-group label {
     position: absolute;
     left: 0;
-    top: 27px;
+    top: 26px;
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.1em;
@@ -1260,6 +1235,8 @@ textarea.form-input {
 
 .social-links a {
     position: relative;
+    padding: 6px 2px;
+    margin: -6px -2px;
     color: var(--muted);
     font-size: 13px;
     text-decoration: none;
@@ -1299,7 +1276,7 @@ textarea.form-input {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 9px 14px;
+    padding: 8px 16px;
     border-radius: var(--radius-full);
     background: var(--ink);
     color: var(--bg);
@@ -1348,10 +1325,8 @@ textarea.form-input {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    background: var(--surface);
     color: var(--muted);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     opacity: 0;
     pointer-events: none;
     transform: rotate(-45deg) scale(0.8);
@@ -1368,11 +1343,10 @@ textarea.form-input {
     background: var(--accent);
     color: var(--accent-contrast);
     border-color: var(--accent);
-    transform: rotate(90deg);
 }
 
 .close-btn:active {
-    transform: rotate(90deg) scale(0.92);
+    transform: scale(0.94);
 }
 
 .close-btn svg {
@@ -1402,9 +1376,7 @@ textarea.form-input {
 .focus-backdrop {
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--bg) 58%, transparent);
-    backdrop-filter: blur(24px) saturate(0.85);
-    -webkit-backdrop-filter: blur(24px) saturate(0.85);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
     opacity: 0;
     transition: opacity 600ms var(--ease-out);
 }
@@ -1500,10 +1472,8 @@ textarea.form-input {
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    background: var(--surface);
     color: var(--ink);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     transition: background-color var(--dur-2), color var(--dur-2), border-color var(--dur-2), transform 350ms var(--ease-spring), opacity var(--dur-2);
 }
 
@@ -1550,8 +1520,10 @@ body.is-focused .page-indicator {
     align-items: center;
     gap: 12px;
     max-width: min(420px, calc(100vw - 40px));
-    padding: 12px 18px;
-    border-radius: var(--radius-full);
+    padding: 13px 16px;
+    border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+    border-left: 1px solid var(--accent);
+    border-radius: var(--radius-xs);
     background: var(--ink);
     color: var(--bg);
     box-shadow: var(--shadow-2);
@@ -1561,19 +1533,6 @@ body.is-focused .page-indicator {
     pointer-events: none;
     transform: translate(-50%, 20px) scale(0.96);
     transition: opacity var(--dur-3), transform 500ms var(--ease-spring);
-}
-
-.toast::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-}
-
-.toast.toast-error::before {
-    background: var(--danger);
 }
 
 .toast.show {
@@ -1682,11 +1641,11 @@ body.is-focused .page-indicator {
 
 @container (max-width: 640px) {
     .paper-inner {
-        padding: 26px;
+        padding: 24px;
     }
 
     .paper.is-focused .paper-inner {
-        padding: 28px 24px 88px;
+        padding: 24px 24px 88px;
     }
 
     .page-header {
@@ -1768,7 +1727,6 @@ body.is-focused .page-indicator {
    ========================================================= */
 @media (max-width: 640px) {
     :root {
-        --focus-h: calc(100vh - 24px);
         --focus-h: calc(100dvh - 24px);
     }
 
@@ -1820,6 +1778,87 @@ body.is-focused .page-indicator {
 
     .cursor {
         display: none;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — FLAT MOBILE SHELL (<=768px)
+   Papers stop being 3D objects: no rotation, no scaling, no
+   parallax. Content scrolls inside the card instead of
+   clipping, and focus mode goes fullscreen with safe-area
+   padding so nothing gets cut off.
+   ========================================================= */
+@media (max-width: 768px) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .scene {
+        perspective: none;
+    }
+
+    .camera,
+    .scaler {
+        transform: none;
+    }
+
+    body.is-focused .scene {
+        transform: none;
+    }
+
+    .paper {
+        display: flex;
+        flex-direction: column;
+        width: min(92vw, 480px);
+        height: auto;
+        max-height: calc(100dvh - 160px);
+        transform: translate(-50%, -50%);
+    }
+
+    .paper-inner {
+        height: auto;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .focus-layer {
+        padding: 0;
+    }
+
+    .paper.is-focused {
+        width: calc(100vw - 16px);
+        height: calc(100dvh - 16px);
+        max-height: none;
+        margin: 8px;
+    }
+
+    .paper.is-focused .paper-inner {
+        padding:
+            max(env(safe-area-inset-top), 24px)
+            max(env(safe-area-inset-right), 24px)
+            calc(env(safe-area-inset-bottom) + 96px)
+            max(env(safe-area-inset-left), 24px);
+    }
+
+    .paper.is-focused .close-btn {
+        top: max(env(safe-area-inset-top), 12px);
+        right: max(env(safe-area-inset-right), 12px);
+    }
+
+    .focus-progress {
+        bottom: max(env(safe-area-inset-bottom), 8px);
+        width: calc(100vw - 24px);
+    }
+
+    .paper-open {
+        right: 16px;
+        bottom: 16px;
     }
 }
 

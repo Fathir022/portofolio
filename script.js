@@ -34,13 +34,35 @@
     const navLinks = $$('.nav-link');
 
     const ROUTES = ['home', 'about', 'contact'];
+    const MOBILE_BREAKPOINT = 768;
     const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const finePointerQuery = window.matchMedia('(pointer: fine)');
 
     const css = getComputedStyle(docEl);
-    const PAPER_W = parseFloat(css.getPropertyValue('--paper-w')) || 780;
-    const PAPER_H = parseFloat(css.getPropertyValue('--paper-h')) || 1320;
-    const PAPER_GAP = parseFloat(css.getPropertyValue('--paper-gap')) || 980;
+    let PAPER_W = parseFloat(css.getPropertyValue('--paper-w')) || 780;
+    let PAPER_H = parseFloat(css.getPropertyValue('--paper-h')) || 1320;
+    let PAPER_GAP = parseFloat(css.getPropertyValue('--paper-gap')) || 980;
+
+    function isMobileLayout() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+    }
+
+    // Flat layout measures its own gap from the viewport; media query values
+    // like min() do not parse back to a number, so JS overrides both sides.
+    function refreshPaperLayout() {
+        if (isMobileLayout()) {
+            PAPER_GAP = Math.min(window.innerWidth * 0.92, 480) + 24;
+        } else {
+            const styles = getComputedStyle(docEl);
+            PAPER_W = parseFloat(styles.getPropertyValue('--paper-w')) || 780;
+            PAPER_H = parseFloat(styles.getPropertyValue('--paper-h')) || 1320;
+            PAPER_GAP = parseFloat(styles.getPropertyValue('--paper-gap')) || 980;
+        }
+        docEl.style.setProperty('--paper-gap', `${PAPER_GAP}px`);
+        papers.forEach((paper, index) => {
+            paper.style.setProperty('--paper-x', `${index * PAPER_GAP}px`);
+        });
+    }
 
     const CONFIG = {
         rotX: 52,
@@ -176,13 +198,18 @@
     }
 
     function cameraAngles() {
-        if (window.innerWidth <= 640) {
-            return { x: 16, z: -6 };
+        if (isMobileLayout()) {
+            return { x: 0, z: 0 };
         }
         return { x: CONFIG.rotX, z: CONFIG.rotZ };
     }
 
     function updateScale() {
+        if (isMobileLayout()) {
+            scaler.style.transform = 'none';
+            return;
+        }
+
         const width = window.innerWidth;
         const height = window.innerHeight;
         const base = Math.max(
@@ -529,8 +556,8 @@
                 const rect = card.getBoundingClientRect();
                 const px = (event.clientX - rect.left) / rect.width - 0.5;
                 const py = (event.clientY - rect.top) / rect.height - 0.5;
-                card.style.setProperty('--tilt-x', `${(-py * 6).toFixed(2)}deg`);
-                card.style.setProperty('--tilt-y', `${(px * 6).toFixed(2)}deg`);
+                card.style.setProperty('--tilt-x', `${(-py * 3).toFixed(2)}deg`);
+                card.style.setProperty('--tilt-y', `${(px * 3).toFixed(2)}deg`);
                 card.style.setProperty('--tilt-lift', '-4px');
             });
 
@@ -547,8 +574,8 @@
             el.addEventListener('pointermove', (event) => {
                 if (reducedMotion || event.pointerType !== 'mouse') return;
                 const rect = el.getBoundingClientRect();
-                const x = (event.clientX - rect.left - rect.width / 2) * 0.16;
-                const y = (event.clientY - rect.top - rect.height / 2) * 0.20;
+                const x = (event.clientX - rect.left - rect.width / 2) * 0.08;
+                const y = (event.clientY - rect.top - rect.height / 2) * 0.10;
                 el.style.setProperty('--mx', `${x.toFixed(1)}px`);
                 el.style.setProperty('--my', `${y.toFixed(1)}px`);
             });
@@ -568,7 +595,7 @@
             if (!reducedMotion && finePointer) body.classList.add('has-cursor');
             return;
         }
-        if (!finePointer || reducedMotion) return;
+        if (!finePointer || reducedMotion || isMobileLayout()) return;
 
         state.cursorReady = true;
         body.classList.add('has-cursor');
@@ -899,6 +926,9 @@
                 if (event.ctrlKey) return;
                 const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
                 if (Math.abs(delta) < 14) return;
+                // On the flat layout the paper content scrolls; keep wheel there.
+                const inner = event.target.closest && event.target.closest('.paper-inner');
+                if (inner && inner.scrollHeight > inner.clientHeight + 4) return;
                 event.preventDefault();
                 if (state.wheelLocked) return;
                 state.wheelLocked = true;
@@ -1104,7 +1134,7 @@
         scene.addEventListener(
             'pointermove',
             (event) => {
-                if (event.pointerType !== 'mouse' || reducedMotion || state.isFocused) return;
+                if (event.pointerType !== 'mouse' || reducedMotion || state.isFocused || isMobileLayout()) return;
                 const nx = (event.clientX / window.innerWidth) * 2 - 1;
                 const ny = (event.clientY / window.innerHeight) * 2 - 1;
                 state.parallax.tx = ny * CONFIG.parallaxX;
@@ -1122,17 +1152,17 @@
 
         papers.forEach((paper) => {
             paper.addEventListener('pointerenter', (event) => {
-                if (reducedMotion || event.pointerType !== 'mouse' || state.isFocused) return;
-                paper.style.setProperty('--lift', '10px');
+                if (reducedMotion || event.pointerType !== 'mouse' || state.isFocused || isMobileLayout()) return;
+                paper.style.setProperty('--lift', '6px');
             });
 
             paper.addEventListener('pointermove', (event) => {
-                if (reducedMotion || event.pointerType !== 'mouse' || state.isFocused) return;
+                if (reducedMotion || event.pointerType !== 'mouse' || state.isFocused || isMobileLayout()) return;
                 const rect = paper.getBoundingClientRect();
                 const px = (event.clientX - rect.left) / rect.width - 0.5;
                 const py = (event.clientY - rect.top) / rect.height - 0.5;
-                paper.style.setProperty('--rx', `${(-py * 2.4).toFixed(2)}deg`);
-                paper.style.setProperty('--ry', `${(px * 2.4).toFixed(2)}deg`);
+                paper.style.setProperty('--rx', `${(-py * 1.8).toFixed(2)}deg`);
+                paper.style.setProperty('--ry', `${(px * 1.8).toFixed(2)}deg`);
             });
 
             paper.addEventListener('pointerleave', () => {
@@ -1154,11 +1184,16 @@
                 if (raf) return;
                 raf = requestAnimationFrame(() => {
                     raf = null;
+                    refreshPaperLayout();
                     resetCamera();
                     updateScale();
                     setWorldX(getWorldX(), true);
                     positionNavPill();
                     updateFocusProgress();
+                    if (!reducedMotion && finePointer) {
+                        if (!isMobileLayout()) initCursor();
+                        else if (state.cursorReady) body.classList.remove('has-cursor');
+                    }
                 });
             },
             { passive: true }
@@ -1222,15 +1257,26 @@
         } else if (typeof reduceQuery.addListener === 'function') {
             reduceQuery.addListener(handleChange);
         }
+
+        // Hybrid devices: enable the custom cursor only while a mouse is attached.
+        if (typeof finePointerQuery.addEventListener === 'function') {
+            finePointerQuery.addEventListener('change', (event) => {
+                finePointer = event.matches;
+                if (finePointer && !reducedMotion) {
+                    initCursor();
+                } else {
+                    body.classList.remove('has-cursor');
+                }
+            });
+        }
     }
 
     function boot() {
-        papers.forEach((paper, index) => {
-            paper.style.setProperty('--paper-x', `${index * PAPER_GAP}px`);
-            paper.dataset.index = String(index);
+        papers.forEach((paper) => {
             const inner = paper.querySelector('.paper-inner');
             if (inner) inner.addEventListener('scroll', updateFocusProgress, { passive: true });
         });
+        refreshPaperLayout();
 
         const initialIndex = readHashPage();
         if (initialIndex !== null) state.currentPage = initialIndex;
