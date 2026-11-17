@@ -1,0 +1,62 @@
+<article class="paper" id="paper-contact" data-index="2" style="--i: 2" data-cursor="Open" aria-labelledby="contact-title" tabindex="0">
+    <div class="paper-inner">
+        <header class="page-header">
+            <a href="#home" data-goto="0" class="brand-text">M. FATHIR ILHAMMI</a>
+            <div class="header-tools">
+                <div class="header-label">Contact</div>
+                <button type="button" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" data-cursor="Theme">
+                    <span class="theme-dot"></span>
+                </button>
+            </div>
+        </header>
+        <div class="page-content flex flex-col">
+            <div class="flex-grow">
+                <h2 class="section-title large" id="contact-title" data-reveal>Let's work together.</h2>
+                <p class="contact-desc" data-reveal>Currently available for freelance opportunities. Send me a message.</p>
+
+                <form id="contactForm" class="contact-form" novalidate>
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty" style="position:absolute;left:-9999px;opacity:0;">
+
+                    <div class="input-group" data-reveal>
+                        <label for="contact-name">Name</label>
+                        <input id="contact-name" name="name" type="text" required placeholder="John Doe" class="form-input" autocomplete="name">
+                    </div>
+                    <div class="input-group" data-reveal>
+                        <label for="contact-email">Email</label>
+                        <input id="contact-email" name="email" type="email" required placeholder="john@example.com" class="form-input" autocomplete="email">
+                    </div>
+                    <div class="input-group" data-reveal>
+                        <label for="contact-message">Message</label>
+                        <textarea id="contact-message" name="message" required placeholder="Tell me about your project..." rows="4" class="form-input"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full mt-4" data-reveal>
+                        <span class="btn-label">Send Message</span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                        <svg class="btn-check" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 13l4 4L19 7"/></svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="contact-footer" data-reveal>
+                <div>
+                    <div class="footer-label">Local Time</div>
+                    <div class="footer-value">Jakarta, ID - <span id="time">00:00</span></div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="text-muted cursor-not-allowed" aria-disabled="true" tabindex="-1">Twitter</a>
+                    <a href="https://instagram.com/@sikimah_sikibidh" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://github.com/Fathir022" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="paper-open" data-open data-cursor="Open" aria-label="Open Contact page">
+        <span>Open</span>
+        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+    </button>
+    <button class="close-btn" aria-label="Close page" data-close data-cursor="Close">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+</article>
