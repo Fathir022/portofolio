@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Grain from '../components/Grain.astro';
+import Cursor from '../components/Cursor.astro';
+import Scene from '../components/Scene.astro';
+import PaperHome from '../components/PaperHome.astro';
+import PaperAbout from '../components/PaperAbout.astro';
+import PaperContact from '../components/PaperContact.astro';
+import FocusLayer from '../components/FocusLayer.astro';
+import PageIndicator from '../components/PageIndicator.astro';
+import UIControls from '../components/UIControls.astro';
+import Toast from '../components/Toast.astro';
+---
+<BaseLayout>
+    <a href="#world" class="skip-link">Skip to content</a>
+    <Grain />
+    <Cursor />
+    <Scene>
+        <PaperHome />
+        <PaperAbout />
+        <PaperContact />
+    </Scene>
+    <FocusLayer />
+    <PageIndicator />
+    <UIControls />
+    <Toast />
+</BaseLayout>
